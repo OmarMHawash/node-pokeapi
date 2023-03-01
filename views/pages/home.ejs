@@ -15,19 +15,22 @@
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
       crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="/css/home.css" type="text/css" />
     <title>PokeApi - Home</title>
   </head>
   <body>
     <%- include('../partials/header') %>
-    <h1>Welcome to home of Pokemon</h1>
-    <ul>
-      <% for (var i = 0; i < pokes.length; i++) { %>
-      <li>
-        <h3><b>Name: </b><%= pokes[i].name %></h3>
-        <h3><b>moves: </b> <%= pokes[i].moves[0].move.name %></h3>
-      </li>
-      <% } %>
-    </ul>
+    <main>
+      <h1>Welcome to home of Pokemon</h1>
+      <ul>
+        <% for (var i = 0; i < pokes.length; i++) { %>
+        <li>
+          <h3><b>Name: </b><%= pokes[i].name %></h3>
+          <h5><b>moves: </b> <%= pokes[i].moves[0].move.name %></h5>
+        </li>
+        <% } %>
+      </ul>
+    </main>
     <%- include('../partials/footer') %>
   </body>
 </html>
