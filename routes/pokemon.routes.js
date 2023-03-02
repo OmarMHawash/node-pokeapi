@@ -1,11 +1,16 @@
-// const router = express.Router() //* not used
-const pokeCon = require('../controllers/pokemons.controller')
-const pokeApi = require('../controllers/poke-api.controller')
-const PREFIX = "/api/poke";
+const pokeCon = require("../controllers/pokemons.controller");
+const pokeApi = require("../controllers/poke-api.controller");
+
+const WA = "/"; // webApp prefix
+const AP = "/api/poke"; // JSON API prefix
 
 module.exports = (app) => {
-  app.get(PREFIX + '/all', pokeCon.allPokes)
-  app.get(PREFIX + '/random',pokeApi.getRandomPokesJSON)
-  app.post(PREFIX + '/new', pokeCon.addPoke)
-  app.delete(PREFIX + '/delete/all', pokeCon.deletePokes)
-}
+  // JSON response routes
+  app.get(AP + "/all", pokeCon.allPokes);
+  app.get(AP + "/random", pokeApi.getRandomPokesJSON);
+  app.post(AP + "/new", pokeCon.addPoke);
+  app.delete(AP + "/delete/all", pokeCon.deletePokes);
+
+  // webApp Routes
+  app.get(WA + "", pokeApi.getRandomPokes);
+};

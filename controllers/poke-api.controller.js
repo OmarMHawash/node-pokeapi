@@ -1,20 +1,13 @@
-const axios = require('axios')
-
-const getRandomPokies = async () => {
-  let pokes = [];
-  for (let i = 0; i < 3; i++) {
-    let randomInt = Math.ceil(Math.random() * 100);
-    let poke = await axios.get(`https://pokeapi.co/api/v2/pokemon/${randomInt}`)
-    let newPoke = { name: poke.data.name, moves: poke.data.moves }
-    pokes = [...pokes, newPoke]
-  }
-  return pokes
-}
+const helpers = require('../helpers/fetch')
+const pokeAPI = require('../utils/pokeAPI')
 
 module.exports.getRandomPokes = async (req, res) => {
-  res.render("home", { pokes: await getRandomPokies() })
+  const pokemons_count = pokeAPI.fetch_count;
+  res.render("home", { pokes: await helpers.generateRandomPokies(pokemons_count) })
 }
 
 module.exports.getRandomPokesJSON = async (req, res) => {
-  res.json({ message: "list of 3 random pokes", data: await getRandomPokies() });
+  const pokemons_count = pokeAPI.fetch_count;
+  res.json({ message: `list of ${pokemons_count} random pokies`, data: await helpers.generateRandomPokies(pokemons_count) });
+
 }

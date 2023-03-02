@@ -1,5 +1,4 @@
 const Pokemon = require('../models/pokemon.model');
-// const mongoose = reqiure('mongoose'); // not used
 
 module.exports.allPokes = (req, res) => {
   Pokemon.find()
